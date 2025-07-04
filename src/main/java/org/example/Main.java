@@ -5,6 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        BankManager manager = new BankManager();
 
         while (true) {
             System.out.println("\n=== Welcome to GBank ===");
@@ -16,7 +17,6 @@ public class Main {
             System.out.println("6. Exit\n");
 
             System.out.print("Enter choice: ");
-
 
             String accountType;
             String name;
@@ -31,15 +31,7 @@ public class Main {
                         // create an account
                         System.out.println("--- Create your GBank Account ---");
 
-                        // accountType
-                        System.out.print("Enter Account Type (savings/checking): ");
-                        accountType = scanner.nextLine().toLowerCase();
-
-                        if(!accountType .equals("savings") && !accountType .equals("checking")){
-                            System.out.println("[Invalid input] Please enter 'savings' or 'checking'.");
-                            break;
-                        }
-
+                        accountType = getAccountType(scanner);
                         accountNumber = getAccountNumber(scanner);
                         name = getAccountHolderName(scanner);
                         pin = getPin(scanner);
@@ -66,7 +58,6 @@ public class Main {
                             System.out.println("[No Initial Deposit Made] Balance: $0.0");
                         }
 
-                        BankManager manager = new BankManager();
                         BankAccount newAccount = manager.createAccount(accountType, accountNumber, name, pin, initialDeposit);
                         System.out.println("\n[GBank Account Created Successfully] \nAccount Number: " + accountNumber +"\nAccount Type: " + accountType + "\nName: " + name + "\nBalance: $" + newAccount.getBalance());
                         break;
@@ -77,11 +68,27 @@ public class Main {
                     case 3:
                         // withdraw
                         break;
-                    case 4:
-                        // compute interest
+                    case 4: // compute interest
+                        accountNumber = getAccountNumber(scanner);
+                        pin = getPin(scanner);
+
+                        // Retrieve the account using BankManager.getAccount
+                        BankAccount interestAccount = BankManager.getAccount(accountNumber, pin);
+                        if (interestAccount != null) {
+                            System.out.print("Enter number of months for interest calculation: ");
+                            try {
+                                int months = Integer.parseInt(scanner.nextLine());
+                                double totalInterest = BankManager.computeInterest(interestAccount, months);
+                                System.out.printf("Total interest for %d months: $%.2f\n", months, totalInterest);
+                            } catch (NumberFormatException e) {
+                                System.out.println("[Invalid Input] Number of months must be a number.");
+                            }
+                        } else {
+                            System.out.println("[Account Not Found] No account matches the provided details.");
+                        }
+
                         break;
-                    case 5:
-                        // display account
+                    case 5: // display account
                         break;
                     case 6:
                         System.out.println("\n---Thank you for using GBank!---");
@@ -96,6 +103,19 @@ public class Main {
             }
 
 
+        }
+    }
+
+    // Helper method to get account type from the user
+    private static String getAccountType(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter Account Type (savings/checking): ");
+            String accountType = scanner.nextLine().toLowerCase();
+            if (accountType.equals("savings") || accountType.equals("checking")) {
+                return accountType;
+            } else {
+                System.out.println("[Invalid input] Please enter 'savings' or 'checking'.");
+            }
         }
     }
 

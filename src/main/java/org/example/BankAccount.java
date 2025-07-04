@@ -30,6 +30,10 @@ public class BankAccount {
         return name;
     }
 
+    public int getPin() {
+        return pin;
+    }
+
     public double getBalance() {
         return balance;
     }
