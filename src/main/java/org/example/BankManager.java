@@ -26,6 +26,11 @@ public class BankManager {
     }
 
     public void deposit(int accountNumber, int pin, double depositAmount) {
+        if (depositAmount <= 0.0) {
+            System.out.println("Deposit amount must be greater than $0.");
+            return;
+        }
+
         for (BankAccount account : accounts) {
             if (account.getAccountNumber() == accountNumber) {
                 double newBalance = account.getBalance() + depositAmount;
