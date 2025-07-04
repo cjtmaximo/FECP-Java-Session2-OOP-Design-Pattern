@@ -24,7 +24,32 @@ public class BankManager {
         }
         return false;
     }
+    // Find specific account
+    public static BankAccount getAccount(int accountNumber, int pin) {
+        for (BankAccount account : accounts) {
+            if (account.getAccountNumber() == accountNumber && account.getPin() == pin) {
+                return account;
+            }
+        }
+        return null;
+    }
 
+    public static double computeInterest(BankAccount account, int months) {
+        if (account == null) {
+            System.out.println("[Invalid Account] Cannot compute interest for a null account.");
+            return 0;
+        }
+
+        InterestCalculationStrategy strategy;
+        if (account.getAccountType().equals("savings")) {
+            strategy = new SavingsInterestStrategy();
+        } else if (account.getAccountType().equals("checking")) {
+            strategy = new CheckingInterestStrategy();
+        } else {
+            System.out.println("Unknown account type for interest calculation. No interest computed.");
+            return 0;
+        }
+        return strategy.calculate(account, months);
     public void deposit(int accountNumber, int pin, double depositAmount) {
         if (depositAmount <= 0.0) {
             System.out.println("Deposit amount must be greater than $0.");
