@@ -25,4 +25,16 @@ public class BankManager {
         return false;
     }
 
+    public void deposit(int accountNumber, int pin, double depositAmount) {
+        for (BankAccount account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
+                double newBalance = account.getBalance() + depositAmount;
+                account.setBalance(newBalance);
+            }
+        }
+
+        System.out.printf("Account with account number %d does not exist.\n", accountNumber);
+        return;
+    }
+
 }

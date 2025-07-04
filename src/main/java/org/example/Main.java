@@ -73,6 +73,11 @@ public class Main {
 
                     case 2:
                         // deposit
+                        accountNumber = getAccountNumber(scanner);
+                        pin = getPin(scanner);
+                        double depositAmount = getDepositAmount(scanner);
+
+                        manager.deposit(accountNumber, pin, depositAmount);
                         break;
                     case 3:
                         // withdraw
@@ -125,6 +130,24 @@ public class Main {
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("[Invalid Input] PIN must be a number.");
+            }
+        }
+    }
+
+    // Helper method to get deposit amount from the user
+    private static double getDepositAmount(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter Deposit Amount: ");
+            try {
+                double depositAmount = Double.parseDouble(scanner.nextLine());
+                if(depositAmount <= 0.0){
+                    System.out.println("[Invalid Deposit Amount] Amount should be > $0.0");
+                    continue;
+                }
+
+                return depositAmount;
+            } catch (NumberFormatException e) {
+                System.out.println("[Invalid Input] Deposit amount must be a number.");
             }
         }
     }
