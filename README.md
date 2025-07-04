@@ -61,4 +61,13 @@ It also adds a layer of security by requesting for both the account number and P
                 └── MainTest.class
 ```
 ## Sample Outputs
-\<insert screenshots here>
+### Create New Account
+![img_1.png](img_1.png)
+### Deposit
+![img_2.png](img_2.png)
+### Withdraw
+![img_3.png](img_3.png)
+### Exit
+![img_4.png](img_4.png)
+## Tests with coverage
+![img.png](img.png)
