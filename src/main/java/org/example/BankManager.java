@@ -106,8 +106,4 @@ public class BankManager {
         System.out.println("Current Balance : $" + account.getBalance());
         System.out.println();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/dev

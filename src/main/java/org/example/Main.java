@@ -31,7 +31,6 @@ public class Main {
                         // create an account
                         System.out.println("--- Create your GBank Account ---");
 
-<<<<<<< HEAD
                         // accountType
                         System.out.print("Enter Account Type (savings/checking): ");
                         accountType = scanner.nextLine().toLowerCase();
@@ -79,12 +78,6 @@ public class Main {
                             System.out.println("[Invalid PIN]");
                             break;
                         }
-=======
-                        accountType = getAccountType(scanner);
-                        accountNumber = getAccountNumber(scanner);
-                        name = getAccountHolderName(scanner);
-                        pin = getPin(scanner);
->>>>>>> origin/dev
 
                         // ask for initial deposit
                         System.out.print("Would you like to enter an Initial Deposit? (y/n): ");
@@ -254,8 +247,4 @@ public class Main {
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/dev
