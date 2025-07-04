@@ -7,6 +7,9 @@ public class BankManager {
 
     // creating an account
     public BankAccount createAccount(String accountType, int accountNumber, String name,  int pin, double balance){
+        if (accountNumber < 0 || pin < 0) {
+            return null;
+        }
         BankAccount bankAccount = new BankAccount(accountType, accountNumber, name, pin, balance);
         accounts.add(bankAccount);
         return bankAccount;
@@ -103,4 +106,8 @@ public class BankManager {
         System.out.println("Current Balance : $" + account.getBalance());
         System.out.println();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/dev

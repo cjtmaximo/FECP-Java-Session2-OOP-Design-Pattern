@@ -31,10 +31,60 @@ public class Main {
                         // create an account
                         System.out.println("--- Create your GBank Account ---");
 
+<<<<<<< HEAD
+                        // accountType
+                        System.out.print("Enter Account Type (savings/checking): ");
+                        accountType = scanner.nextLine().toLowerCase();
+
+                        if(!accountType .equals("savings") && !accountType .equals("checking")){
+                            System.out.println("[Invalid input] Please enter 'savings' or 'checking'.");
+                            break;
+                        }
+
+                        // account number
+                        System.out.print("Enter Account Number: ");
+                        try{
+                            accountNumber = Integer.parseInt(scanner.nextLine());
+                            if (accountNumber < 0) {
+                                System.out.println("[Invalid Account Number] Account number cannot be negative.");
+                                break;
+                            }
+                            // check if account already exists
+                            if (BankManager.accountNumberExists(accountNumber)) {
+                                System.out.println("[Invalid Account Number] Account number already exists.");
+                                break;
+                            }
+                        } catch(NumberFormatException e){
+                            System.out.println("[Invalid Account Number]");
+                            break;
+                        }
+
+                        // account name
+                        System.out.print("Enter Account Name: ");
+                        name = scanner.nextLine();
+
+                        // ask for pin
+                        System.out.print("Enter Account PIN (4-digit): ");
+                        try{
+                            pin = Integer.parseInt(scanner.nextLine());
+                            if (pin < 0) {
+                                System.out.println("[Invalid PIN] PIN cannot be negative.");
+                                break;
+                            }
+                            if(String.valueOf(pin).length() != 4){
+                                System.out.println("[Invalid PIN] PIN must be 4 digits.");
+                                break;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("[Invalid PIN]");
+                            break;
+                        }
+=======
                         accountType = getAccountType(scanner);
                         accountNumber = getAccountNumber(scanner);
                         name = getAccountHolderName(scanner);
                         pin = getPin(scanner);
+>>>>>>> origin/dev
 
                         // ask for initial deposit
                         System.out.print("Would you like to enter an Initial Deposit? (y/n): ");
@@ -204,4 +254,8 @@ public class Main {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/dev
