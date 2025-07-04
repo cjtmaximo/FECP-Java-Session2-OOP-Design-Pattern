@@ -50,6 +50,8 @@ public class BankManager {
             return 0;
         }
         return strategy.calculate(account, months);
+    }
+
     public void deposit(int accountNumber, int pin, double depositAmount) {
         if (depositAmount <= 0.0) {
             System.out.println("Deposit amount must be greater than $0.");
