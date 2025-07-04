@@ -81,6 +81,11 @@ public class Main {
                         break;
                     case 3:
                         // withdraw
+                        accountNumber = getAccountNumber(scanner);
+                        pin = getPin(scanner);
+                        double withdrawAmount = getWithdrawAmount(scanner);
+
+                        manager.withdraw(accountNumber, pin, withdrawAmount);
                         break;
                     case 4:
                         // compute interest
@@ -146,6 +151,24 @@ public class Main {
                 }
 
                 return depositAmount;
+            } catch (NumberFormatException e) {
+                System.out.println("[Invalid Input] Deposit amount must be a number.");
+            }
+        }
+    }
+
+    // Helper method to get withdraw amount from the user
+    private static double getWithdrawAmount(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter Withdraw Amount: ");
+            try {
+                double withdrawAmount = Double.parseDouble(scanner.nextLine());
+                if(withdrawAmount <= 0.0){
+                    System.out.println("[Invalid Deposit Amount] Amount should be > $0.0");
+                    continue;
+                }
+
+                return withdrawAmount;
             } catch (NumberFormatException e) {
                 System.out.println("[Invalid Input] Deposit amount must be a number.");
             }

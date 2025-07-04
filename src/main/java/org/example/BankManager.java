@@ -42,4 +42,25 @@ public class BankManager {
         return;
     }
 
+    public void withdraw(int accountNumber, int pin, double withdrawAmount) {
+        if (withdrawAmount <= 0.0) {
+            System.out.println("Withdraw amount must be greater than $0.");
+            return;
+        }
+
+        for (BankAccount account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
+                if (withdrawAmount > account.getBalance()) {
+                    System.out.println("You cannot withdraw more than you have.");
+                    return;
+                }
+                double newBalance = account.getBalance() - withdrawAmount;
+                account.setBalance(newBalance);
+            }
+        }
+
+        System.out.printf("Account with account number %d does not exist.\n", accountNumber);
+        return;
+    }
+
 }
