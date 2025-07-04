@@ -50,6 +50,8 @@ public class BankManager {
             return 0;
         }
         return strategy.calculate(account, months);
+    }
+
     public void deposit(int accountNumber, int pin, double depositAmount) {
         if (depositAmount <= 0.0) {
             System.out.println("Deposit amount must be greater than $0.");
@@ -88,4 +90,17 @@ public class BankManager {
         return;
     }
 
+    public static void displayAccountInfo(BankAccount account) {
+        if (account == null) {
+            System.out.println("[Invalid Account] Cannot display info for a null account.");
+            return;
+        }
+
+        System.out.println("\n--- Account Information ---");
+        System.out.println("Account Type    : " + account.getAccountType());
+        System.out.println("Account Number  : " + account.getAccountNumber());
+        System.out.println("Holder Name     : " + account.getName());
+        System.out.println("Current Balance : $" + account.getBalance());
+        System.out.println();
+    }
 }

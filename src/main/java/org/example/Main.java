@@ -99,6 +99,16 @@ public class Main {
 
                         break;
                     case 5: // display account
+                        accountNumber = getAccountNumber(scanner);
+                        pin = getPin(scanner);
+
+                        BankAccount displayAccount = BankManager.getAccount(accountNumber, pin);
+
+                        if (displayAccount != null) {
+                            BankManager.displayAccountInfo(displayAccount);
+                        } else {
+                            System.out.println("[Account Not Found] No account matches the provided details.");
+                        }
                         break;
                     case 6:
                         System.out.println("\n---Thank you for using GBank!---");
