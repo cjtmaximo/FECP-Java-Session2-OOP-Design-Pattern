@@ -61,7 +61,7 @@ public class BankManager {
     }
 
     public void withdraw(BankAccount bankAccount, double withdrawAmount) {
-        TransactionStrategy transactionStrategy = new DepositStrategy();
+        TransactionStrategy transactionStrategy = new WithdrawStrategy();
         transactionStrategy.calculate(bankAccount, withdrawAmount);
     }
 
