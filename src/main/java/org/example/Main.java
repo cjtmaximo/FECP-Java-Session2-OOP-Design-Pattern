@@ -5,6 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        BankManager manager = new BankManager();
 
         while (true) {
             System.out.println("\n=== Welcome to GBank ===");
@@ -66,7 +67,6 @@ public class Main {
                             System.out.println("[No Initial Deposit Made] Balance: $0.0");
                         }
 
-                        BankManager manager = new BankManager();
                         BankAccount newAccount = manager.createAccount(accountType, accountNumber, name, pin, initialDeposit);
                         System.out.println("\n[GBank Account Created Successfully] \nAccount Number: " + accountNumber +"\nAccount Type: " + accountType + "\nName: " + name + "\nBalance: $" + newAccount.getBalance());
                         break;
