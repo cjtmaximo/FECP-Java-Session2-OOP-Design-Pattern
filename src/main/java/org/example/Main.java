@@ -44,6 +44,11 @@ public class Main {
                         System.out.print("Enter Account Number: ");
                         try{
                             accountNumber = Integer.parseInt(scanner.nextLine());
+                            // check if account already exists
+                            if (BankManager.accountNumberExists(accountNumber)) {
+                                System.out.println("[Invalid Account Number] Account number already exists.");
+                                break;
+                            }
                         } catch(NumberFormatException e){
                             System.out.println("[Invalid Account Number]");
                             break;
@@ -54,9 +59,15 @@ public class Main {
                         name = scanner.nextLine();
 
                         // ask for pin
-                        System.out.print("Enter Account PIN: ");
+                        System.out.print("Enter Account PIN (4-digit): ");
                         try{
                             pin = Integer.parseInt(scanner.nextLine());
+
+                            if(String.valueOf(pin).length() != 4){
+                                System.out.println("[Invalid PIN] PIN must be 4 digits.");
+                                break;
+                            }
+
                         } catch (NumberFormatException e) {
                             System.out.println("[Invalid PIN]");
                             break;
@@ -86,7 +97,7 @@ public class Main {
 
                         BankManager manager = new BankManager();
                         BankAccount newAccount = manager.createAccount(accountType, accountNumber, name, pin, initialDeposit);
-                        System.out.println("[Account Created Successfully] \nAccount Number: " + accountNumber +"\nAccount Type: " + accountType + "\nName: " + name + "\nBalance: $" + newAccount.getBalance());
+                        System.out.println("\n[GBank Account Created Successfully] \nAccount Number: " + accountNumber +"\nAccount Type: " + accountType + "\nName: " + name + "\nBalance: $" + newAccount.getBalance());
                         break;
 
                     case 2:
@@ -105,7 +116,6 @@ public class Main {
                         System.out.println("\n---Thank you for using GBank!---");
                         System.exit(0);
                     default:
-                        System.out.println("I am here");
                         System.out.println("Invalid input. Please enter a number between 1 and 5.");
                         break;
                 }

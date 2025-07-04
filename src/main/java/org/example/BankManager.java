@@ -15,4 +15,14 @@ public class BankManager {
     public static ArrayList<BankAccount> getAccounts() {
         return accounts;
     }
+
+    public static boolean accountNumberExists(int accountNumber) {
+        for (BankAccount account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
