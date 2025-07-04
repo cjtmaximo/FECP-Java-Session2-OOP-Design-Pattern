@@ -112,7 +112,11 @@ public class Main {
                         double depositAmount = getDepositAmount(scanner);
 
                         BankAccount depositAccount = BankManager.getAccount(accountNumber, pin);
-                        manager.deposit(depositAccount, depositAmount);
+                        if (depositAccount != null) {
+                            manager.deposit(depositAccount, depositAmount);
+                        } else {
+                            System.out.println("[Account Not Found] No account matches the provided details.");
+                        }
                         break;
                     case 3:
                         // withdraw
@@ -121,7 +125,11 @@ public class Main {
                         double withdrawAmount = getWithdrawAmount(scanner);
 
                         BankAccount withdrawAccount = BankManager.getAccount(accountNumber, pin);
-                        manager.withdraw(withdrawAccount, withdrawAmount);
+                        if (withdrawAccount != null) {
+                            manager.withdraw(withdrawAccount, withdrawAmount);
+                        } else {
+                            System.out.println("[Account Not Found] No account matches the provided details.");
+                        }
                         break;
                     case 4: // compute interest
                         accountNumber = getAccountNumber(scanner);
