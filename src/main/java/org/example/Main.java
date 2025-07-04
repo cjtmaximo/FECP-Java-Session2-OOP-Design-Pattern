@@ -40,38 +40,9 @@ public class Main {
                             break;
                         }
 
-                        // account number
-                        System.out.print("Enter Account Number: ");
-                        try{
-                            accountNumber = Integer.parseInt(scanner.nextLine());
-                            // check if account already exists
-                            if (BankManager.accountNumberExists(accountNumber)) {
-                                System.out.println("[Invalid Account Number] Account number already exists.");
-                                break;
-                            }
-                        } catch(NumberFormatException e){
-                            System.out.println("[Invalid Account Number]");
-                            break;
-                        }
-
-                        // account name
-                        System.out.print("Enter Account Name: ");
-                        name = scanner.nextLine();
-
-                        // ask for pin
-                        System.out.print("Enter Account PIN (4-digit): ");
-                        try{
-                            pin = Integer.parseInt(scanner.nextLine());
-
-                            if(String.valueOf(pin).length() != 4){
-                                System.out.println("[Invalid PIN] PIN must be 4 digits.");
-                                break;
-                            }
-
-                        } catch (NumberFormatException e) {
-                            System.out.println("[Invalid PIN]");
-                            break;
-                        }
+                        accountNumber = getAccountNumber(scanner);
+                        name = getAccountHolderName(scanner);
+                        pin = getPin(scanner);
 
                         // ask for initial deposit
                         System.out.print("Would you like to enter an Initial Deposit? (y/n): ");
@@ -125,6 +96,36 @@ public class Main {
             }
 
 
+        }
+    }
+
+    // Helper method to get account number from the user
+    private static int getAccountNumber(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter Account Number: ");
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[Invalid Input] Account Number must be a number.");
+            }
+        }
+    }
+
+    // Helper method to get account holder name from the user
+    private static String getAccountHolderName(Scanner scanner) {
+        System.out.print("Enter Account Holder Name: ");
+        return scanner.nextLine();
+    }
+
+    // Helper method to get PIN from the user
+    private static int getPin(Scanner scanner) {
+        while (true) {
+            System.out.print("Enter Account PIN: ");
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[Invalid Input] PIN must be a number.");
+            }
         }
     }
 }
