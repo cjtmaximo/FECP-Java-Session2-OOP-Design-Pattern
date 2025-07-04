@@ -111,7 +111,8 @@ public class Main {
                         pin = getPin(scanner);
                         double depositAmount = getDepositAmount(scanner);
 
-                        manager.deposit(accountNumber, pin, depositAmount);
+                        BankAccount depositAccount = BankManager.getAccount(accountNumber, pin);
+                        manager.deposit(depositAccount, depositAmount);
                         break;
                     case 3:
                         // withdraw
@@ -119,7 +120,8 @@ public class Main {
                         pin = getPin(scanner);
                         double withdrawAmount = getWithdrawAmount(scanner);
 
-                        manager.withdraw(accountNumber, pin, withdrawAmount);
+                        BankAccount withdrawAccount = BankManager.getAccount(accountNumber, pin);
+                        manager.withdraw(withdrawAccount, withdrawAmount);
                         break;
                     case 4: // compute interest
                         accountNumber = getAccountNumber(scanner);
